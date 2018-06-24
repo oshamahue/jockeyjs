@@ -22,6 +22,8 @@
  ******************************************************************************/
 package com.jockeyjs;
 
+import android.support.annotation.Nullable;
+
 import java.util.Map;
 
 public abstract class JockeyHandler {
@@ -31,7 +33,7 @@ public abstract class JockeyHandler {
      *
      * @param payload
      */
-    public void perform(Map<Object, Object> payload) {
+    public void perform(@Nullable Map<Object, Object> payload) {
         perform(payload, null);
     }
 
@@ -42,17 +44,17 @@ public abstract class JockeyHandler {
      * @param payload
      * @param listener
      */
-    public void perform(Map<Object, Object> payload, OnCompletedListener listener) {
+    public void perform(@Nullable Map<Object, Object> payload, @Nullable OnCompletedListener listener) {
         doPerform(payload);
         completed(listener);
     }
 
-    protected void completed(OnCompletedListener listener) {
+    protected void completed(@Nullable OnCompletedListener listener) {
         if (listener != null)
             listener.onCompleted();
     }
 
-    protected abstract void doPerform(Map<Object, Object> payload);
+    protected abstract void doPerform(@Nullable Map<Object, Object> payload);
 
     public interface OnCompletedListener {
         void onCompleted();

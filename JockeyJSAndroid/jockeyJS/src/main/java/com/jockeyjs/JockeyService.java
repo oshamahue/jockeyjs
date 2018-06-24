@@ -29,8 +29,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public class JockeyService extends Service implements Jockey {
@@ -45,70 +49,71 @@ public class JockeyService extends Service implements Jockey {
      * @param context
      * @param connection
      */
-    public static boolean bind(Context context, ServiceConnection connection) {
+    public static boolean bind(@NonNull Context context, @NonNull ServiceConnection connection) {
         return context.bindService(new Intent(context, JockeyService.class),
                 connection, Context.BIND_AUTO_CREATE);
     }
 
-    public static void unbind(Context context, ServiceConnection connection) {
+    public static void unbind(@NonNull Context context, @NonNull ServiceConnection connection) {
         context.unbindService(connection);
     }
 
     @Override
-    public IBinder onBind(Intent arg0) {
+    @Nullable
+    public IBinder onBind(@NonNull Intent arg0) {
         return _binder;
     }
 
     @Override
-    public void setOnValidateListener(OnValidateListener listener) {
+    public void setOnValidateListener(@Nullable OnValidateListener listener) {
         _jockeyImpl.setOnValidateListener(listener);
     }
 
-    public void on(String type, JockeyHandler... handler) {
+    public void on(@NonNull String type, @NonNull JockeyHandler... handler) {
         _jockeyImpl.on(type, handler);
     }
 
     @Override
-    public void off(String type) {
+    public void off(@NonNull String type) {
         _jockeyImpl.off(type);
     }
 
-    public void send(String type, WebView toWebView) {
+    public void send(@NonNull String type, @NonNull WebView toWebView) {
         send(type, toWebView, null);
     }
 
-    public void send(String type, WebView toWebView, Object withPayload) {
+    public void send(@NonNull String type, @NonNull WebView toWebView, @Nullable Object withPayload) {
         send(type, toWebView, withPayload, null);
     }
 
-    public void send(String type, WebView toWebView, JockeyCallback complete) {
+    public void send(@NonNull String type, @NonNull WebView toWebView, @Nullable JockeyCallback complete) {
         send(type, toWebView, null, complete);
     }
 
-    public void send(String type, WebView toWebView, Object withPayload,
-                     JockeyCallback complete) {
+    public void send(@NonNull String type, @NotNull WebView toWebView, @Nullable Object withPayload,
+                     @Nullable JockeyCallback complete) {
         _jockeyImpl.send(type, toWebView, withPayload, complete);
     }
 
-    public void triggerCallbackOnWebView(WebView webView, int messageId) {
+    public void triggerCallbackOnWebView(@NonNull WebView webView, int messageId) {
         _jockeyImpl.triggerCallbackOnWebView(webView, messageId);
     }
 
-    public void configure(WebView webView) {
+    public void configure(@NonNull WebView webView) {
         _jockeyImpl.configure(webView);
     }
 
     @Override
-    public boolean handles(String eventName) {
+    public boolean handles(@NonNull String eventName) {
         return _jockeyImpl.handles(eventName);
     }
 
-    public void setWebViewClient(WebViewClient client) {
+    public void setWebViewClient(@NonNull WebViewClient client) {
         _jockeyImpl.setWebViewClient(client);
     }
 
     public class JockeyBinder extends Binder {
-
+        @NonNull
         public Jockey getService() {
             return JockeyService.this;
         }

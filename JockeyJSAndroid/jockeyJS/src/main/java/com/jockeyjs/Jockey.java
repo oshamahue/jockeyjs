@@ -22,15 +22,18 @@
  ******************************************************************************/
 package com.jockeyjs;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
 
 /**
  * The primary interface for communicating between a WebView and the local android activity.
  *
  * @author Paul
- *
  */
+@SuppressWarnings("unused")
 public interface Jockey {
 
     /**
@@ -51,35 +54,35 @@ public interface Jockey {
 
     /**
      * Sends a new event to the webview
-     *
+     * <p>
      * Equivalent to calling send(type, toWebView, null, null);
      *
      * @param type
      * @param toWebView
      */
-    void send(String type, WebView toWebView);
+    void send(@NonNull String type, @NonNull WebView toWebView);
 
     /**
      * Sends a new event to the webview with the included payload
-     *
+     * <p>
      * Equivalent to calling send(type, toWebView, payload, null)
      *
      * @param type
      * @param toWebView
      * @param withPayload
      */
-    void send(String type, WebView toWebView, Object withPayload);
+    void send(@NonNull String type, @NonNull WebView toWebView, @Nullable Object withPayload);
 
     /**
      * Sends the new event to the webview and registers a callback to listen for the returned value
-     *
+     * <p>
      * Equivalent to calling send(type, toWebView, null, complete)
      *
      * @param type
      * @param toWebView
      * @param complete
      */
-    void send(String type, WebView toWebView, JockeyCallback complete);
+    void send(@NonNull String type, @NonNull WebView toWebView, @Nullable JockeyCallback complete);
 
     /**
      * Sends the new event to the webview with a payload and a callback to listen for the webpage response.
@@ -89,7 +92,7 @@ public interface Jockey {
      * @param withPayload
      * @param complete
      */
-    void send(String type, WebView toWebView, Object withPayload, JockeyCallback complete);
+    void send(@NonNull String type, @NonNull WebView toWebView, @Nullable Object withPayload, @Nullable JockeyCallback complete);
 
     /**
      * Triggers the callback on the webview with the appropriate messageId
@@ -97,14 +100,14 @@ public interface Jockey {
      * @param webView
      * @param messageId
      */
-    void triggerCallbackOnWebView(WebView webView, int messageId);
+    void triggerCallbackOnWebView(@NonNull WebView webView, int messageId);
 
     /**
      * Configures the WebView to be able to receive and send events with Jockey
      *
      * @param webView
      */
-    void configure(WebView webView);
+    void configure(@NonNull WebView webView);
 
     /**
      * Returns if the Jockey implementation handles the event
@@ -112,7 +115,7 @@ public interface Jockey {
      * @param string
      * @return
      */
-    boolean handles(String string);
+    boolean handles(@NonNull String string);
 
     /**
      * Sets the listener that will be called when validation needs to be performed
@@ -120,18 +123,17 @@ public interface Jockey {
      *
      * @param listener
      */
-    void setOnValidateListener(OnValidateListener listener);
+    void setOnValidateListener(@Nullable OnValidateListener listener);
 
-    void setWebViewClient(WebViewClient client);
+    void setWebViewClient(@NonNull WebViewClient client);
 
     /**
      * An interface for the app to check the incoming source of an event.
      *
      * @author Paul
-     *
      */
     interface OnValidateListener {
-        boolean validate(String host);
+        boolean validate(@NonNull String host);
     }
 
 }

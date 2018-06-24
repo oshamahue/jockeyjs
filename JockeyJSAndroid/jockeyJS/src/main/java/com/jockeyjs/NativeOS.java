@@ -24,6 +24,8 @@ package com.jockeyjs;
 
 import android.content.Context;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import java.util.Map;
@@ -36,35 +38,37 @@ import java.util.Map;
  *
  * <code>
  * //Creates a handler that will generate a toast when invoked <br>
- * 	nativeOS(context).toast("A message", Toast.LENGTH_SHORT); <br>
+ * nativeOS(context).toast("A message", Toast.LENGTH_SHORT); <br>
  * <br>
- *  //Creates a handler that operates the OS's haptic feed back <br>
- * 	nativeOS(context).vibrate(45); <br>
+ * //Creates a handler that operates the OS's haptic feed back <br>
+ * nativeOS(context).vibrate(45); <br>
  *
  * </code>
  *
- *
  * @author Paul
- *
  */
 public final class NativeOS extends CompositeJockeyHandler {
 
+    @NonNull
     private Context _context;
 
-    private NativeOS(Context context) {
+    private NativeOS(@NonNull Context context) {
         _context = context;
     }
 
-    public static NativeOS nativeOS(Context context) {
+    @NonNull
+    public static NativeOS nativeOS(@NonNull Context context) {
         return new NativeOS(context);
     }
 
+    @NonNull
     public NativeOS vibrate(long length) {
         this.add(new VibrateHandler(_context, length));
         return this;
     }
 
-    public NativeOS toast(String message, int length) {
+    @NonNull
+    public NativeOS toast(@NonNull String message, int length) {
         this.add(new ToastHandler(_context, message, length));
         return this;
     }
@@ -75,19 +79,19 @@ public final class NativeOS extends CompositeJockeyHandler {
         private int _length;
         private Context _context;
 
-        private ToastHandler(Context context, String message, int length) {
+        private ToastHandler(@NonNull Context context, @NonNull String message, int length) {
             _message = message;
             _length = length;
             _context = context;
         }
 
         @Override
-        protected void doPerform(Map<Object, Object> payload) {
+        protected void doPerform(@Nullable Map<Object, Object> payload) {
             Toast.makeText(_context, _message, _length).show();
         }
 
         @Override
-        protected void completed(OnCompletedListener listener) {
+        protected void completed(@Nullable OnCompletedListener listener) {
             if (listener != null)
                 listener.onCompleted();
         }
@@ -100,19 +104,19 @@ public final class NativeOS extends CompositeJockeyHandler {
         private Vibrator _vibrator;
         private Context _context;
 
-        private VibrateHandler(Context context, long length) {
+        private VibrateHandler(@NonNull Context context, long length) {
             _context = context;
             _length = length;
             _vibrator = (Vibrator) _context.getSystemService(Context.VIBRATOR_SERVICE);
         }
 
         @Override
-        protected void doPerform(Map<Object, Object> payload) {
+        protected void doPerform(@Nullable Map<Object, Object> payload) {
             _vibrator.vibrate(_length);
         }
 
         @Override
-        protected void completed(OnCompletedListener listener) {
+        protected void completed(@Nullable OnCompletedListener listener) {
             if (listener != null)
                 listener.onCompleted();
         }

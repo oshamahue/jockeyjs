@@ -1,5 +1,8 @@
 package com.jockeyjs;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,35 +23,36 @@ import java.util.Map;
  */
 public class CompositeJockeyHandler extends JockeyHandler {
 
+    @Nullable
     private OnCompletedListener _listener;
     private List<JockeyHandler> _handlers = new ArrayList<>();
     private OnCompletedListener _accumulator;
 
-    public CompositeJockeyHandler(JockeyHandler... handlers) {
+    public CompositeJockeyHandler(@NonNull JockeyHandler... handlers) {
         add(handlers);
     }
 
-    public static JockeyHandler compose(JockeyHandler... handlers) {
+    public static JockeyHandler compose(@NonNull JockeyHandler... handlers) {
         return new CompositeJockeyHandler(handlers);
     }
 
-    public void add(JockeyHandler... handler) {
+    public void add(@NonNull JockeyHandler... handler) {
         _handlers.addAll(Arrays.asList(handler));
     }
 
-    public void clear(JockeyHandler handler) {
+    public void clear() {
         _handlers.clear();
     }
 
     @Override
-    public void perform(Map<Object, Object> payload, OnCompletedListener listener) {
+    public void perform(@Nullable Map<Object, Object> payload, @Nullable OnCompletedListener listener) {
         this._listener = listener;
         this._accumulator = new AccumulatingListener();
         doPerform(payload);
     }
 
     @Override
-    protected void doPerform(Map<Object, Object> payload) {
+    protected void doPerform(@Nullable Map<Object, Object> payload) {
         for (JockeyHandler handler : _handlers)
             handler.perform(payload, this._accumulator);
     }

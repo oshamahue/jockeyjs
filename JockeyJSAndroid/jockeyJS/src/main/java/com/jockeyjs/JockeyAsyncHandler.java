@@ -22,6 +22,8 @@
  ******************************************************************************/
 package com.jockeyjs;
 
+import android.support.annotation.Nullable;
+
 import com.jockeyjs.util.BackgroundExecutor;
 
 import java.util.Map;
@@ -29,14 +31,12 @@ import java.util.Map;
 /**
  * Base class for JockeyHandlers that will perform their work in a separate thread.
  *
- *
  * @author Paul
- *
  */
 public abstract class JockeyAsyncHandler extends JockeyHandler {
 
     @Override
-    public final void perform(final Map<Object, Object> payload, final OnCompletedListener listener) {
+    public final void perform(@Nullable final Map<Object, Object> payload, @Nullable final OnCompletedListener listener) {
         BackgroundExecutor.execute(new Runnable() {
             @Override
             public void run() {

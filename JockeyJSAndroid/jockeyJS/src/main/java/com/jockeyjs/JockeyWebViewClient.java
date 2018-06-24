@@ -23,6 +23,8 @@
 package com.jockeyjs;
 
 import android.annotation.SuppressLint;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -43,19 +45,21 @@ class JockeyWebViewClient extends ForwardingWebViewClient {
     private WebViewClient _delegate;
     private Moshi moshi;
 
-    public JockeyWebViewClient(JockeyImpl jockey) {
+    public JockeyWebViewClient(@NonNull JockeyImpl jockey) {
         moshi = new Moshi.Builder().build();
         _jockeyImpl = jockey;
     }
 
+    @NonNull
     public JockeyImpl getImplementation() {
         return _jockeyImpl;
     }
 
-    protected void setDelegate(WebViewClient client) {
+    protected void setDelegate(@Nullable WebViewClient client) {
         _delegate = client;
     }
 
+    @Nullable
     public WebViewClient delegate() {
         return _delegate;
     }
@@ -83,11 +87,11 @@ class JockeyWebViewClient extends ForwardingWebViewClient {
         return false;
     }
 
-    public boolean isJockeyScheme(URI uri) {
+    public boolean isJockeyScheme(@NonNull URI uri) {
         return uri.getScheme().equals("jockey") && !uri.getQuery().equals("");
     }
 
-    public void processUri(WebView view, URI uri)
+    public void processUri(@NonNull WebView view, @NonNull URI uri)
             throws HostValidationException {
         String[] parts = uri.getPath().replaceAll("^/", "").split("/");
         String host = uri.getHost();
@@ -110,13 +114,13 @@ class JockeyWebViewClient extends ForwardingWebViewClient {
         }
     }
 
-    public JockeyWebViewPayload checkPayload(JockeyWebViewPayload fromJson)
+    public JockeyWebViewPayload checkPayload(@NonNull JockeyWebViewPayload fromJson)
             throws HostValidationException {
         validateHost(fromJson.host);
         return fromJson;
     }
 
-    private void validateHost(String host) throws HostValidationException {
+    private void validateHost(@NonNull String host) throws HostValidationException {
         getImplementation().validate(host);
     }
 
