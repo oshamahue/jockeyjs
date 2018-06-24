@@ -1,6 +1,8 @@
+[![](https://jitpack.io/v/oshamahue/jockeyjs.svg)](https://jitpack.io/#oshamahue/jockeyjs)
+
 JockeyJS
 ========
-
+Forked from https://github.com/tcoulter/jockeyjs to bring the project up to date and add support for maven, Kotlin, CocoaPods, Webkit and possibly Swift support
 JockeyJS is a dual-iOS and Android library that facilitates two-way communication between native applications and JavaScript apps running inside them.
 It also supports communication between iframes running inside a webview.
 
@@ -25,7 +27,22 @@ JockeyJS will help your iOS app communicate with a JavaScript application runnin
 
 Setup - Android
 -----
+Add jitpack repo to root build.gradle file
+```	
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
 
+Add the library dependency to the module build.gradle file
+```
+dependencies {
+	        implementation 'com.github.oshamahue:jockeyjs:v0.1.4'
+	}
+```
 JockeyJS will help your Android app communicate with a JavaScript application running inside a WebView.
 
 1. Download the latest JockeyJS.Android project.
@@ -140,6 +157,8 @@ protected void onStop() {
 }
 ```
 
+
+
 Setup - Other Platform
 -----
 
@@ -190,6 +209,14 @@ jockey.send("event-name", webView, payload, new JockeyCallback() {
 });
 
 
+```
+
+```Kotlin
+//With Kotlin SAM listeners are available
+
+jockey.send("event-name", webView) {
+	//Your execution code
+}
 ```
 
 #####Other platforms
@@ -342,6 +369,14 @@ jockey.off("event-name");
 //If you would like to stop listening to ALL events
 jockey.clear();
 
+```
+
+```Kotlin
+//With Kotlin SAM listeners are available
+
+jockey.on("event-name", webView) {
+	//Your execution code
+}
 ```
 
 #####Other platforms
