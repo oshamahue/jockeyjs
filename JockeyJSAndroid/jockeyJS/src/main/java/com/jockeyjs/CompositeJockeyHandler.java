@@ -13,7 +13,6 @@ import java.util.Map;
  * When perform is invoked on this handler it will invoke it on all of the handlers.<br>
  * They will be invoked in FIFO order, however if any are asynchronous, no guarantees can be made for
  * execution order.
- * <p/>
  * To maintain a single callback invariant, this handler will accumulate <br>
  * all the "complete" calls from the internal handlers.
  * <br><br>
@@ -32,6 +31,7 @@ public class CompositeJockeyHandler extends JockeyHandler {
         add(handlers);
     }
 
+    @NonNull
     public static JockeyHandler compose(@NonNull JockeyHandler... handlers) {
         return new CompositeJockeyHandler(handlers);
     }
