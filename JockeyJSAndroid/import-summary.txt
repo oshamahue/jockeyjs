@@ -1,0 +1,170 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Manifest Merging:
+-----------------
+Your project uses libraries that provide manifests, and your Eclipse
+project did not explicitly turn on manifest merging. In Android Gradle
+projects, manifests are always merged (meaning that contents from your
+libraries' manifests will be merged into the app manifest. If you had
+manually copied contents from library manifests into your app manifest
+you may need to remove these for the app to build correctly.
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+From JockeyJS.Android:
+* .gitignore
+* .gradle/
+* .gradle/4.6/
+* .gradle/4.6/fileChanges/
+* .gradle/4.6/fileChanges/last-build.bin
+* .gradle/4.6/fileHashes/
+* .gradle/4.6/fileHashes/fileHashes.bin
+* .gradle/4.6/fileHashes/fileHashes.lock
+* .gradle/4.6/taskHistory/
+* .gradle/4.6/taskHistory/taskHistory.bin
+* .gradle/4.6/taskHistory/taskHistory.lock
+* .gradle/buildOutputCleanup/
+* .gradle/buildOutputCleanup/buildOutputCleanup.lock
+* .gradle/buildOutputCleanup/cache.properties
+* .gradle/buildOutputCleanup/outputFiles.bin
+* .gradle/vcsWorkingDirs/
+* .gradle/vcsWorkingDirs/gc.properties
+* .idea/
+* .idea/caches/
+* .idea/caches/build_file_checksums.ser
+* .idea/workspace.xml
+* JockeyJS.Android.iml
+* build.gradle
+* build/
+* build/kotlin-build/
+* build/kotlin-build/version.txt
+* gradle.properties
+* gradle/
+* gradle/wrapper/
+* gradle/wrapper/gradle-wrapper.jar
+* gradle/wrapper/gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* jockeyJS/
+* jockeyJS/build.gradle
+* jockeyJS/build/
+* jockeyJS/build/generated/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/debug/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/out/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/out/com/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/out/com/jockeyjs/
+* jockeyJS/build/generated/not_namespaced_r_class_sources/debug/generateDebugRFile/out/com/jockeyjs/R.java
+* jockeyJS/build/generated/source/
+* jockeyJS/build/generated/source/buildConfig/
+* jockeyJS/build/generated/source/buildConfig/debug/
+* jockeyJS/build/generated/source/buildConfig/debug/com/
+* jockeyJS/build/generated/source/buildConfig/debug/com/jockeyjs/
+* jockeyJS/build/generated/source/buildConfig/debug/com/jockeyjs/BuildConfig.java
+* jockeyJS/build/intermediates/
+* jockeyJS/build/intermediates/aapt_friendly_merged_manifests/
+* jockeyJS/build/intermediates/aapt_friendly_merged_manifests/debug/
+* jockeyJS/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/
+* jockeyJS/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/
+* jockeyJS/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/AndroidManifest.xml
+* jockeyJS/build/intermediates/aapt_friendly_merged_manifests/debug/processDebugManifest/aapt/output.json
+* jockeyJS/build/intermediates/incremental/
+* jockeyJS/build/intermediates/incremental/packageDebugResources/
+* jockeyJS/build/intermediates/incremental/packageDebugResources/compile-file-map.properties
+* jockeyJS/build/intermediates/incremental/packageDebugResources/merger.xml
+* jockeyJS/build/intermediates/merged_manifests/
+* jockeyJS/build/intermediates/merged_manifests/debug/
+* jockeyJS/build/intermediates/merged_manifests/debug/processDebugManifest/
+* jockeyJS/build/intermediates/merged_manifests/debug/processDebugManifest/merged/
+* jockeyJS/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml
+* jockeyJS/build/intermediates/merged_manifests/debug/processDebugManifest/merged/output.json
+* jockeyJS/build/intermediates/res/
+* jockeyJS/build/intermediates/res/symbol-table-with-package/
+* jockeyJS/build/intermediates/res/symbol-table-with-package/debug/
+* jockeyJS/build/intermediates/res/symbol-table-with-package/debug/package-aware-r.txt
+* jockeyJS/build/intermediates/symbols/
+* jockeyJS/build/intermediates/symbols/debug/
+* jockeyJS/build/intermediates/symbols/debug/R.txt
+* jockeyJS/build/outputs/
+* jockeyJS/build/outputs/logs/
+* jockeyJS/build/outputs/logs/manifest-merger-debug-report.txt
+* jockeyJS/jockeyJS.iml
+* jockeyJS/lint.xml
+* jockeyJS/src/
+* jockeyJS/src/main/
+* jockeyJS/src/main/AndroidManifest.xml
+* jockeyJS/src/main/java/
+* jockeyJS/src/main/java/com/
+* jockeyJS/src/main/java/com/jockeyjs/
+* jockeyJS/src/main/java/com/jockeyjs/CompositeJockeyHandler.java
+* jockeyJS/src/main/java/com/jockeyjs/DefaultJockeyImpl.java
+* jockeyJS/src/main/java/com/jockeyjs/HostValidationException.java
+* jockeyJS/src/main/java/com/jockeyjs/Jockey.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyAsyncHandler.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyCallback.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyHandler.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyImpl.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyService.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyWebViewClient.java
+* jockeyJS/src/main/java/com/jockeyjs/JockeyWebViewPayload.java
+* jockeyJS/src/main/java/com/jockeyjs/NativeOS.java
+* jockeyJS/src/main/java/com/jockeyjs/util/
+* jockeyJS/src/main/java/com/jockeyjs/util/BackgroundExecutor.java
+* jockeyJS/src/main/java/com/jockeyjs/util/ForwardingWebViewClient.java
+* jockeyJS/src/main/res/
+* jockeyJS/src/main/res/values/
+* jockeyJS/src/main/res/values/strings.xml
+* jockeyJS/src/main/res/values/styles.xml
+* proguard-project.txt
+* settings.gradle
+From JockeyJSAndroidSample:
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+In JockeyJS.Android:
+* AndroidManifest.xml => jockeyJSAndroid/src/main/AndroidManifest.xml
+* lint.xml => jockeyJSAndroid/lint.xml
+* /Users/haditok/GitHub/jockeyjs/JockeyJSAndroidSample/src/main/java/ => jockeyJSAndroid/src/main/java/
+In JockeyJSAndroidSample:
+* AndroidManifest.xml => jockeyJSAndroidSample/src/main/AndroidManifest.xml
+* assets/ => jockeyJSAndroidSample/src/main/assets/
+* lint.xml => jockeyJSAndroidSample/lint.xml
+* res/ => jockeyJSAndroidSample/src/main/res/
+* src/main/java/ => jockeyJSAndroidSample/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
