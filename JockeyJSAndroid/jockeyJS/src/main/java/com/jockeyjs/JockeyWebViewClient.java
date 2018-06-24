@@ -27,22 +27,24 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.google.gson.Gson;
 import com.jockeyjs.util.ForwardingWebViewClient;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@SuppressWarnings("HardCodedStringLiteral")
+@SuppressWarnings({"HardCodedStringLiteral", "WeakerAccess"})
 @SuppressLint("SetJavaScriptEnabled")
 class JockeyWebViewClient extends ForwardingWebViewClient {
 
     private JockeyImpl _jockeyImpl;
     private WebViewClient _delegate;
-    private Gson _gson;
+    private Moshi moshi;
 
     public JockeyWebViewClient(JockeyImpl jockey) {
-        _gson = new Gson();
+        moshi = new Moshi.Builder().build();
         _jockeyImpl = jockey;
     }
 
@@ -87,11 +89,16 @@ class JockeyWebViewClient extends ForwardingWebViewClient {
 
     public void processUri(WebView view, URI uri)
             throws HostValidationException {
-        String[] parts = uri.getPath().replaceAll("^\\/", "").split("/");
+        String[] parts = uri.getPath().replaceAll("^/", "").split("/");
         String host = uri.getHost();
+        JsonAdapter<JockeyWebViewPayload> adapter = moshi.adapter(JockeyWebViewPayload.class);
 
-        JockeyWebViewPayload payload = checkPayload(_gson.fromJson(
-                uri.getQuery(), JockeyWebViewPayload.class));
+        JockeyWebViewPayload payload = null;
+        try {
+            payload = checkPayload(adapter.fromJson(uri.getQuery()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         if (parts.length > 0) {
             if (host.equals("event")) {

@@ -2,13 +2,15 @@ package com.jockeyjs;
 
 import android.webkit.WebView;
 
-import com.google.gson.Gson;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+
 
 @SuppressWarnings("HardCodedStringLiteral")
 public class DefaultJockeyImpl extends JockeyImpl {
 
     private int messageCount = 0;
-    private Gson gson = new Gson();
+    Moshi moshi = new Moshi.Builder().build();
 
     @Override
     public void send(String type, WebView toWebView, Object withPayload,
@@ -20,7 +22,8 @@ public class DefaultJockeyImpl extends JockeyImpl {
         }
 
         if (withPayload != null) {
-            withPayload = gson.toJson(withPayload);
+            JsonAdapter<Object> jsonAdapter = moshi.adapter(Object.class);
+            withPayload = jsonAdapter.toJson(withPayload);
         }
 
         String url = String.format("javascript:Jockey.trigger(\"%s\", %d, %s)",
