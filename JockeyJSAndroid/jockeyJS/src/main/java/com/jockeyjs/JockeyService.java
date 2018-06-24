@@ -34,8 +34,6 @@ import android.support.annotation.Nullable;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import org.jetbrains.annotations.NotNull;
-
 
 public class JockeyService extends Service implements Jockey {
 
@@ -90,7 +88,7 @@ public class JockeyService extends Service implements Jockey {
         send(type, toWebView, null, complete);
     }
 
-    public void send(@NonNull String type, @NotNull WebView toWebView, @Nullable Object withPayload,
+    public void send(@NonNull String type, @NonNull WebView toWebView, @Nullable Object withPayload,
                      @Nullable JockeyCallback complete) {
         _jockeyImpl.send(type, toWebView, withPayload, complete);
     }
