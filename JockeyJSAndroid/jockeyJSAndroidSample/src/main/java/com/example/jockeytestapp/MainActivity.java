@@ -69,9 +69,9 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		toolbar = (LinearLayout) findViewById(R.id.colorsView);
+		toolbar = findViewById(R.id.colorsView);
 
-		webView = (WebView) findViewById(R.id.webView);
+		webView = findViewById(R.id.webView);
 
 		OnClickListener toolbarListener = new OnClickListener() {
 
@@ -90,13 +90,13 @@ public class MainActivity extends Activity {
 			}
 		};
 
-		ImageButton btnRed = (ImageButton) findViewById(R.id.color_red);
-		ImageButton btnGreen = (ImageButton) findViewById(R.id.color_green);
-		ImageButton btnYellow = (ImageButton) findViewById(R.id.color_yellow);
-		ImageButton btnOrange = (ImageButton) findViewById(R.id.color_orange);
-		ImageButton btnPink = (ImageButton) findViewById(R.id.color_pink);
-		ImageButton btnBlue = (ImageButton) findViewById(R.id.color_blue);
-		ImageButton btnWhite = (ImageButton) findViewById(R.id.color_white);
+		ImageButton btnRed = findViewById(R.id.color_red);
+		ImageButton btnGreen = findViewById(R.id.color_green);
+		ImageButton btnYellow = findViewById(R.id.color_yellow);
+		ImageButton btnOrange = findViewById(R.id.color_orange);
+		ImageButton btnPink = findViewById(R.id.color_pink);
+		ImageButton btnBlue = findViewById(R.id.color_blue);
+		ImageButton btnWhite = findViewById(R.id.color_white);
 
 		btnRed.setOnClickListener(toolbarListener);
 		btnGreen.setOnClickListener(toolbarListener);
