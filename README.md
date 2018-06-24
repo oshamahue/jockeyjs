@@ -40,7 +40,7 @@ allprojects {
 Add the library dependency to the module build.gradle file
 ```
 dependencies {
-	        implementation 'com.github.oshamahue:jockeyjs:v0.1.4'
+	    implementation 'com.github.oshamahue:jockeyjs:v0.1.5'
 	}
 ```
 JockeyJS will help your Android app communicate with a JavaScript application running inside a WebView.
